@@ -55,25 +55,7 @@ let runMerlinCommand = (args, options) => {
     });
 };
 
-// TEST 1
-// let proc = cp.spawn(ocamlMerlinPath, ["single", "type-enclosing", "-position", "1:5", "-filename", "bin/test.ml"])
-// proc.stdin.setEncoding('utf-8');
-
-// let contents = fs.readFileSync("bin/test.ml").toString("utf8").trim();
-// console.log(contents);
-
-// proc.stdout.pipe(process.stdout);
-// proc.stdin.write(contents);
-
-// proc.stdin.end();
-
-// TEST 2
-// let proc = cp.spawn(ocamlMerlinPath, ["single", "path-of-source", "-file", "test.ml"])
-// proc.stdin.setEncoding('utf-8');
-// proc.stdout.pipe(process.stdout);
-
-// TEST 3
-describe.only("type-enclosing", () => {
+describe("type-enclosing", () => {
     test("Can give me a type from a .ml file", async () => {
         let { data }  = await runMerlinCommand(["single", "type-enclosing", "-position", "1:5", "-filename bin/test.ml"], {
             cwd: root
@@ -108,6 +90,3 @@ describe("path-of-source", () => {
         expect(data.class).toBe('return');
     });
 });
-// let proc = cp.spawn(ocamlMerlinPath, ["single", "path-of-source", "-file", "Util.re"])
-// proc.stdin.setEncoding('utf-8');
-// proc.stdout.pipe(process.stdout);
