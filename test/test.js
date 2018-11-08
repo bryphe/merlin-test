@@ -3,9 +3,13 @@ const fs = require("fs");
 const path = require("path");
 
 let ocamlMerlinPath = cp.execSync("esy b which ocamlmerlin").toString("utf8").trim();
+let ocamlMerlinReasonPath = cp.execSync("esy b which ocamlmerlin-reason").toString("utf8").trim();
 
 ocamlMerlinPath = process.platform === "win32" ? cp.execSync(`esy b cygpath -w ${ocamlMerlinPath}`).toString("utf8").trim() : ocamlMerlinPath
+ocamlMerlinReasonPath = process.platform === "win32" ? cp.execSync(`esy b cygpath -w ${ocamlMerlinReasonPath}`).toString("utf8").trim() : ocamlMerlinPath
 console.log(ocamlMerlinPath);
+console.log(ocamlMerlinReasonPath);
+
 
 const root = path.join(__dirname, "..");
 const lib = path.join(root, "lib");
@@ -17,10 +21,17 @@ let runMerlinCommand = (args, options) => {
                 input: null,
                 ...options };
 
+    let augmentedPath = path.dirname(ocamlMerlinReasonPath) + ";" + process.env.PATH;
+
+    console.log("Augmented Path: " + augmentedPath);
     console.log("Using cwd: " + options.cwd);
     return new Promise((resolve, reject) => {
         let proc = cp.spawn(ocamlMerlinPath, args, {
-            cwd: options.cwd
+            cwd: options.cwd,
+            env: {
+                ...process.env,
+                PATH: augmentedPath,
+            }
         })
         // proc.stdin.setEncoding('utf-8');
         // proc.stdout.pipe(process.stdout);
