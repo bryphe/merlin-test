@@ -117,7 +117,7 @@ let y = 2;
 describe("path-of-source", () => {
     test("Can find file in same directory", async () => {
         let { data }  = await runMerlinCommand(["single", "path-of-source", "-file test.ml"], {
-            cwd: bin
+            cwd: lib
         });
 
         expect(data.class).toBe('return');
@@ -125,7 +125,7 @@ describe("path-of-source", () => {
 
     test("Can find file from another directory", async () => {
         let { data }  = await runMerlinCommand(["single", "path-of-source", "-file test.ml"], {
-            cwd: lib
+            cwd: bin
         });
 
         expect(data.class).toBe('return');
