@@ -28,7 +28,7 @@
   },
   "resolutions": {
     "@esy-ocaml/esy-installer": "0.0.1",
-    "@esy-ocaml/reason": "link:../real-reason",
+    "@esy-ocaml/reason": "github:bryphe/reason#2a40da9",
     "@opam/menhir": "20171013",
     "@opam/re": "1.8.0"
   },
