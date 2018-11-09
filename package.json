@@ -4,7 +4,7 @@
   "description": "Reason workflow with Esy",
   "license": "MIT",
   "esy": {
-    "build": "refmterr dune build -p #{self.name}",
+    "build": "dune build -p #{self.name}",
     "NOTE": "Optional release Section. Customizes result of `esy release`",
     "release": {
       "releasedBinaries": [
@@ -22,13 +22,12 @@
     "@opam/lambda-term": "*",
     "@opam/lwt": "*",
     "@esy-ocaml/reason": "*",
-    "refmterr": "*",
     "ocaml": "~4.6.0",
     "@opam/merlin": "*"
   },
   "resolutions": {
     "@esy-ocaml/esy-installer": "0.0.1",
-    "@opam/merlin": "link:../merlin",
+    "@esy-ocaml/reason": "link:../real-reason",
     "@opam/menhir": "20171013",
     "@opam/re": "1.8.0"
   },
