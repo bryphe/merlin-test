@@ -130,4 +130,12 @@ describe("path-of-source", () => {
 
         expect(data.class).toBe('return');
     });
+
+    test("Can find file from root directory", async () => {
+        let { data }  = await runMerlinCommand(["single", "path-of-source", "-file test.ml"], {
+            cwd: root
+        });
+
+        expect(data.class).toBe('return');
+    });
 });

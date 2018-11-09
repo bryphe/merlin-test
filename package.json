@@ -15,7 +15,8 @@
         "*refmterr-*",
         "ocaml-*"
       ]
-    }
+    },
+    "buildsInSource": "_build"
   },
   "dependencies": {
     "@opam/dune": "*",
